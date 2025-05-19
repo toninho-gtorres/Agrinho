@@ -2,83 +2,315 @@
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Impacto do Desmatamento</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Consumo e Produção Responsáveis</title>
+  <style>
+    /* Color inspired by ODS 12 icon: #55a630 (green) with clean white background */
+    :root {
+      --primary-color: #55a630;
+      --primary-color-light: #a1d884;
+      --background-color: #f9fafb;
+      --text-color: #264228;
+      --text-light: #4b6f3b;
+      --button-bg: #4b7f39;
+      --button-hover-bg: #3e6630;
+      --header-footer-bg: #e6f0d4;
+      --link-color: #386b0c;
+      --link-hover-color: #2e5308;
+      --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    /* Global resets and styling */
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-family);
+      background-color: var(--background-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+      display: block;
+      margin: 0 auto;
+    }
+
+    header {
+      background-color: var(--header-footer-bg);
+      padding: 2rem 1rem;
+      text-align: center;
+      border-bottom: 3px solid var(--primary-color);
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      color: var(--primary-color);
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+    }
+
+    .image-container {
+      margin: 1rem auto 1.5rem;
+      max-width: 600px;
+    }
+
+    header p {
+      max-width: 700px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+      color: var(--text-light);
+      font-weight: 500;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 1.5rem;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--link-color);
+      font-weight: 600;
+      font-size: 1rem;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.3s ease, color 0.3s ease;
+      padding-bottom: 2px;
+    }
+
+    nav a:hover,
+    nav a:focus {
+      border-color: var(--primary-color);
+      color: var(--primary-color);
+      outline: none;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 3rem auto 4rem;
+      padding: 0 1rem;
+    }
+
+    section.conteudo {
+      margin-bottom: 3rem;
+      background-color: white;
+      padding: 2rem 2.5rem;
+      border-radius: 16px;
+      box-shadow: 0 6px 18px rgba(34, 60, 80, 0.1);
+      transition: box-shadow 0.3s ease;
+    }
+    section.conteudo:hover {
+      box-shadow: 0 10px 25px rgba(34, 60, 80, 0.15);
+    }
+
+    section.conteudo h2 {
+      font-size: 2rem;
+      margin-bottom: 1.3rem;
+      color: var(--primary-color);
+    }
+
+    article h3 {
+      font-size: 1.4rem;
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+      color: var(--text-light);
+      font-weight: 700;
+    }
+
+    article p {
+      font-size: 1.05rem;
+      color: var(--text-color);
+      margin-bottom: 1rem;
+      line-height: 1.5;
+    }
+
+    ul {
+      padding-left: 1.3rem;
+      color: var(--text-color);
+      font-size: 1.05rem;
+      list-style-type: disc;
+      line-height: 1.5;
+    }
+
+    li {
+      margin-bottom: 0.7rem;
+    }
+
+    /* Call to action button */
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 1.5rem;
+      padding: 0.75rem 1.6rem;
+      background-color: var(--button-bg);
+      color: white;
+      font-weight: 700;
+      font-size: 1.06rem;
+      border: none;
+      border-radius: 30px;
+      text-decoration: none;
+      box-shadow: 0 6px 12px rgba(75, 127, 57, 0.4);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .cta-button:hover,
+    .cta-button:focus {
+      background-color: var(--button-hover-bg);
+      box-shadow: 0 8px 14px rgba(62, 102, 48, 0.65);
+      outline: none;
+      text-decoration: none;
+    }
+
+    iframe {
+      border: none;
+      border-radius: 14px;
+      margin-top: 1.7rem;
+      box-shadow: 0 4px 16px rgba(34, 60, 80, 0.12);
+      max-width: 100%;
+      height: 315px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    footer {
+      background-color: var(--header-footer-bg);
+      color: var(--text-light);
+      text-align: center;
+      padding: 1.8rem 1rem;
+      border-top: 3px solid var(--primary-color);
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .cta-footer {
+      display: inline-block;
+      margin-bottom: 0.8rem;
+      text-decoration: none;
+      color: var(--primary-color);
+      font-weight: 700;
+      padding: 0.5rem 1.4rem;
+      border: 2.5px solid var(--primary-color);
+      border-radius: 30px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .cta-footer:hover,
+    .cta-footer:focus {
+      background-color: var(--primary-color);
+      color: white;
+      outline: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 1.9rem;
+      }
+
+      section.conteudo {
+        padding: 1.5rem 1.8rem;
+      }
+
+      nav ul {
+        flex-direction: column;
+        gap: 1rem;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
-    <header>
-        <h1>Impacto do Desmatamento</h1>
-        <div class="image-container">
-            <img src="cataratas.jpeg"
-                alt="Foto das Cataratas do Iguaçu, um lugar com muitas árvores e mata nativa preservada.">
-        </div>
-        <p>O desmatamento intensifica fenômenos negativos no meio ambiente e na vida das pessoas, afetando enchentes, temperatura e qualidade de vida.</p>
-        <nav>
-            <ul>
-                <li><a href="#problemas">Os Problemas</a></li>
-                <li><a href="#consequencias">Consequências</a></li>
-                <li><a href="#conclusao">Conclusão</a></li>
-            </ul>
-        </nav>
-    </header>
+  <header>
+    <h1>Consumo e Produção Responsáveis</h1>
+    <div class="image-container">
+      <img src="sustentabilidade.jpeg"
+        alt="Imagem representativa de práticas sustentáveis, como reciclagem e agricultura orgânica." />
+    </div>
+    <p>A ODS 12 busca garantir padrões de consumo e produção sustentáveis, promovendo a eficiência dos recursos e a redução de
+      resíduos.</p>
+    <nav>
+      <ul>
+        <li><a href="#problemas">Os Problemas</a></li>
+        <li><a href="#consequencias">Consequências</a></li>
+        <li><a href="#conclusao">Conclusão</a></li>
+      </ul>
+    </nav>
+  </header>
 
+  <main>
+    <section id="problemas" class="conteudo">
+      <h2>Os Problemas</h2>
+      <article>
+        <h3>Exaustão de Recursos Naturais</h3>
+        <p>O consumo excessivo leva à exploração insustentável dos recursos naturais, comprometendo a biodiversidade e os
+          ecossistemas.</p>
+      </article>
 
-    <main>
-        <section id="problemas" class="conteudo">
-            <h2>Os Problemas</h2>
-            <article>
-                <h3>Aumento das enchentes</h3>
-                <p>As árvores absorvem a água da chuva e ajudam na infiltração no solo. Sem vegetação, a água escoa rapidamente, causando
-                    enchentes.</p>
-            </article>
+      <article>
+        <h3>Geração de Resíduos</h3>
+        <p>A produção em massa resulta em grandes quantidades de resíduos, que muitas vezes não são reciclados ou tratados
+          adequadamente.</p>
+      </article>
 
-            <article>
-                <h3>Calor excessivo e ilhas de calor</h3>
-                <p>O desmatamento reduz a evapotranspiração das plantas, elevando a temperatura das cidades e aumentando o efeito das ilhas
-                    de calor.</p>
-            </article>
+      <article>
+        <h3>Desigualdade Social</h3>
+        <p>Práticas de consumo irresponsáveis podem agravar a desigualdade, pois comunidades vulneráveis são frequentemente as
+          mais afetadas.</p>
+      </article>
 
-            <article>
-                <h3>Redução da qualidade de vida</h3>
-                <p>A destruição das florestas impacta a biodiversidade, aumenta a poluição e reduz o contato com áreas verdes, afetando a
-                    saúde mental e respiratória.</p>
-            </article>
+      <a href="https://www.youtube.com/watch?v=OZgJToDR3N8" class="cta-button" target="_blank">Como impacta o mundo? <i
+          class="fa-solid fa-arrow-up-right-from-square" style="color: var(--background-color);"></i></a>
+    </section>
 
-            <a href="https://www.youtube.com/watch?v=ILh7nDEKGqc&pp=ygUXSW1wYWN0byBkbyBEZXNtYXRhbWVudG8%3D" class="cta-button" target="_blank">Como impacta o mundo? <i
-                    class="fa-solid fa-arrow-up-right-from-square" style="color: var(--text-color);"></i></a>
-        </section>
+    <section id="consequencias" class="conteudo">
+      <h2>Consequências</h2>
+      <ul>
+        <li>Exaustão de recursos naturais e degradação ambiental</li>
+        <li>Aumento da poluição e resíduos sólidos</li>
+        <li>Impactos negativos na saúde pública</li>
+        <li>Desigualdade social e econômica</li>
+        <li>Perda de biodiversidade e habitats naturais</li>
+        <li>Comprometimento da segurança alimentar</li>
+      </ul>
+    </section>
 
-        <section id="consequencias" class="conteudo">
-            <h2>Consequências</h2>
-            <ul>
-                <li>Aumento das enchentes e erosão do solo</li>
-                <li>Aumento das temperaturas e mudanças climáticas</li>
-                <li>Perda da biodiversidade</li>
-                <li>Redução da qualidade de vida nas cidades</li>
-                <li>Agravamento de problemas de saúde</li>
-                <li>Impacto na economia de comunidades locais</li>
-            </ul>
-        </section>
+    <section id="conclusao" class="conteudo">
+      <h2>Conclusão</h2>
+      <p>Para garantir um futuro sustentável, é essencial promover práticas de consumo e produção responsáveis, priorizando a
+        eficiência e a redução de resíduos.</p>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/KEaOKkSa1o4"
+        title="Vídeo explicativo sobre Consumo e Produção Responsáveis UK" allowfullscreen></iframe>
+    </section>
+  </main>
 
-        <section id="conclusao" class="conteudo">
-            <h2>Conclusão</h2>
-            <p>O desmatamento impacta diretamente a vida humana. Para evitar suas consequências, é necessário preservar o meio ambiente,
-                investir em reflorestamento e adotar práticas sustentáveis.</p>
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/ILh7nDEKGqc?si=feol6sZCHo1Cg-jQ" title="YouTube video.">
-        </section>
-
-    </main>
-
-    <footer>
-        <a href="https://www.linkedin.com/in/femascheti" class="cta-footer">Faça parte dessa causa!</a>
-        <p>2025 | @femascheti</p>
-    </footer>
+  <footer>
+    <a href="https://www.linkedin.com/in/femascheti" class="cta-footer">Faça parte dessa causa!</a>
+    <p>2025 | @femascheti</p>
+  </footer>
 </body>
 
 </html>
+
